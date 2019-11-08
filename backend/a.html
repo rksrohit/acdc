@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+            </style>
+    <title>Document</title>
+</head>
+<body>
+  <div id="input"></div>
+  <form name="search_form" action="javascript:searcharray();">
+      <input type="text" name="search_query">
+      <input type="submit" value="Search">
+  </form>
+  <div id="output"></div>
+    <div id="box"></div>
+   <script>
+       var rows = [  {Order_id:"1",Product_name:"headphone",Product_Code:"123",Product_Type:"electronic",	Status:"dispatch"},
+
+{Order_id:"2",Product_name:"watch",Product_Code:"124",Product_Type:"electronic",	Status:"cancel"},
+{Order_id:"3",Product_name:"chair",Product_Code:"156",Product_Type:"stationary",	Status:"in-process"},
+{Order_id:"4",Product_name:"speaker",Product_Code:"1587",Product_Type:"electronic",	Status:"dispatch"},
+{Order_id:"5",Product_name:"chicken",Product_Code:"557",Product_Type:"Food",	Status:"dispatch"}
+,
+{Order_id:"6",Product_name:"apple",Product_Code:"799",Product_Type:"food",	Status:"cancel"},
+{Order_id:"7",Product_name:"Book",Product_Code:"445",Product_Type:"stationary",	Status:"in-process"},
+{Order_id:"8",Product_name :"harddisk",Product_Code:"899",Product_Type:"electronic",	Status:"dispatch"}
+,{Order_id:"9",Product_name:"shoes",Product_Code:"777",Product_Type:"cloth",	Status:"cancel"},
+{Order_id:"10",Product_name:"watch",Product_Code:"124",Product_Type:"electronic",	Status:"cancel"},
+{Order_id:"11",Product_name:"chair",Product_Code:"156",Product_Type:"stationary",	Status:"in-process"},
+{Order_id:"12",Product_name:"speaker",Product_Code:"1587",Product_Type:"electronic",	Status:"dispatch"},
+{Order_id:"13",Product_name:"chicken",Product_Code:"557",Product_Type:"Food",	Status:"dispatch"}
+,
+{Order_id:"14",Product_name:"apple",Product_Code:"799",Product_Type:"food",	Status:"cancel"},
+{Order_id:"15",Product_name:"Book",Product_Code:"445",Product_Type:"stationary",	Status:"in-process"},
+{Order_id:"16",Product_name :"harddisk",Product_Code:"899",Product_Type:"electronic",	Status:"dispatch"}
+,{Order_id:"17",Product_name:"shoes",Product_Code:"777",Product_Type:"cloth",	Status:"cancel"}
+
+,];
+
+var html = "<table border='1|1'>";
+        html+="<tr>";
+    html+="<td>Order Id</td>";
+    html+="<td>Product Name</td>";
+    html+="<td>Product Code</td>";
+    html+="<td>Product Type</td>";
+    html+="<td>Status</td>";
+    html+="<td>Action</td>";
+for (var i = 0; i < rows.length; i++) {
+    html+="<tr>";
+    html+="<td>"+rows[i].Order_id+"</td>";
+    html+="<td>"+rows[i].Product_name+"</td>";
+    html+="<td>"+rows[i].Product_Code+"</td>";
+    html+="<td>"+rows[i].Product_Type+"</td>";
+    html+="<td>"+rows[i].Status+"</td>";
+    
+    var x = document.createElement("BUTTON");
+    ;
+
+    html+="</tr>";
+
+}
+html+="</table>";
+document.getElementById("box").innerHTML = html;
+
+
+function searcharray() {
+            var q = document.forms["search_form"]["search_query"].value;
+           var outputText = "";
+
+           
+            // search each cell for the query string
+            for (var i = 0; i < rows.length; i++) {
+                 
+                    if (rows[i].Product_name.search(q) != -1) {
+                        outputText += "[" +rows[i].Order_id+"     "+ rows[i].Product_name + "   "+
+                        rows[i].Status+"]<br>";
+                        break; // need this break to prevent multiple results of the same array
+                    }
+                }
+            
+
+            // if nothing is found, output a message
+            if (outputText == "") {
+                outputText = "Sorry, no result!"
+            }
+
+            // output the result
+            document.getElementById("output").innerHTML = outputText;
+        }
+
+
+
+    </script> 
+</body>
+</html>
